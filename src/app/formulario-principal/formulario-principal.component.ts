@@ -84,7 +84,7 @@ export class FormularioPrincipalComponent implements OnInit {
   return null;
 }
 
-
+/** validar doi.*/
   validarDOI(control: AbstractControl) {
     const doi = control.value;
     const doiRegex = /^(https:\/\/doi\.org\/)?10.\d{4,9}\/[-._;()/:A-Z0-9]+$/i;
