@@ -17,7 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 
 
-/** Error cuando un control no válido se ensucia, se toca o se envía.*/
+/** Error cuando un control no válido se ensucia, se toca o se envía .*/
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
