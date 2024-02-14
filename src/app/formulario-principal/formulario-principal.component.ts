@@ -55,6 +55,7 @@ export class FormularioPrincipalComponent implements OnInit {
     { value: '7', label: 'Ciencias de la Educación' },
   ];
 
+/** validar cedula .*/
   validarCedulaEcuatoriana(control: AbstractControl): ValidationErrors | null {
   let cedula = control.value;
   // Convertir a cadena si es necesario
