@@ -202,9 +202,9 @@ export class FormularioPrincipalComponent implements OnInit {
                 message: `
                   <div style="background-color: #9370DB; padding: 20px; color: white; font-family: 'Times New Roman', serif; text-align: justify;">
                     <header>
-                      <h1 style="color: white; text-shadow: 2px 2px 4px #000000;">Estimado ${this.form.get('nombres')?.value} ${this.form.get('apellidos')?.value} con CI ${this.form.get('cedula')?.value}</h1>
+                      <h1 style="color: white; text-shadow: 2px 2px 4px #000000;">Estimado/a ${this.form.get('nombres')?.value} ${this.form.get('apellidos')?.value} con CI ${this.form.get('cedula')?.value}</h1>
                       <p>Bienvenido al sistema de gestión de artículos científicos.</p>
-                      <p>Analizaremos su candidatura y verificaremos que todo sea correcto. Si todo está bien en pocos minutos te enviaremos un formulario con el pago para que puedas completar el proceso.</p>
+                      <p>Analizaremos su candidatura y verificaremos que todo sea correcto. Si todo está bien en pocos minutos te enviaremos un correo para que puedas realizar el pago y completar el proceso.</p>
                       <p>Recuerde que marcó la opción "${this.form.get('participacion')?.value}" y tiene un descuento de ${this.form.get('descuento')?.value}%. El monto total a pagar después del descuento es ${this.form.get('totalAPagar')?.value}$. Ten Lista tu cartera de pago</p>
                       <p>Gracias por preferirnos.</p>
                     <main>
