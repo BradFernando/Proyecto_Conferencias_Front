@@ -1,0 +1,72 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- Ordinal Column -->
+    <ng-container matColumnDef="ordinal">
+      <mat-header-cell *matHeaderCellDef class="ordinal-cell">No.</mat-header-cell>
+      <mat-cell *matCellDef="let element; let i = index" class="ordinal-cell {{element.estadoVisual !== 'pendiente' ? 'desactivado' : ''}}">{{i + 1}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna de Nombres Completos -->
+    <ng-container matColumnDef="nombresCompletos">
+      <mat-header-cell *matHeaderCellDef class="nombres-cell"> Nombres Completos </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="nombres-cell"> {{element.nombresCompletos}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fecha_pago">
+      <mat-header-cell *matHeaderCellDef class="fechaPago-cell"> Fecha de Pago </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="fechaPago-cell {{element.estadoVisual !== 'pendiente' ? 'desactivado' : ''}}"> {{element.fecha_pago | date: 'dd/MM/yyyy'}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Dirección de Pago -->
+    <ng-container matColumnDef="direccion_pago">
+      <mat-header-cell *matHeaderCellDef class="direccionPago-cell"> Dirección de Pago </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="direccionPago-cell {{element.estadoVisual !== 'pendiente' ? 'desactivado' : ''}}"> {{element.direccion_pago}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Postal Pago -->
+    <ng-container matColumnDef="postal_pago">
+      <mat-header-cell *matHeaderCellDef class="postalPago-cell"> Postal de Pago </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="postalPago-cell {{element.estadoVisual !== 'pendiente' ? 'desactivado' : ''}}"> {{element.postal_pago}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Total a Pagar -->
+    <ng-container matColumnDef="totalAPagar">
+      <mat-header-cell *matHeaderCellDef class="totalAPagar-cell"> Total a Pagar </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="totalAPagar-cell {{element.estadoVisual !== 'pendiente' ? 'desactivado' : ''}}"> {{element.totalAPagar}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Comprobante de Pago -->
+    <ng-container matColumnDef="comprobante_pago">
+      <mat-header-cell *matHeaderCellDef class="comprobantePago-cell"> Comprobante de Pago </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="comprobantePago-cell {{element.estadoVisual !== 'pendiente' ? 'desactivado' : ''}}">
+        <img [src]="element.comprobante_pago" alt="Comprobante de Pago" width="100" height="100" (click)="openImageDialog(element.comprobante_pago)">
+      </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Acciones -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef class="acciones-cell"> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="acciones-cell">
+        <button mat-raised-button color="primary" (click)="aceptar(element)" [disabled]="element.estadoVisual !== 'pendiente'">Aceptar</button>
+        <button mat-raised-button color="warn" (click)="rechazar(element)" [disabled]="element.estadoVisual !== 'pendiente'">Rechazar</button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Definir las celdas de encabezado -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <!-- Definir las celdas de fila -->
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'aceptado': row.estadoVisual === 'aceptado', 'rechazado': row.estadoVisual === 'rechazado', 'pendiente': row.estadoVisual === 'pendiente'}" [matTooltip]="row.estadoVisual">
+      <ng-container [ngTemplateOutlet]="tmpl" [ngTemplateOutletContext]="{row: row}"></ng-container>
+    </mat-row>
+
+    <ng-template #tmpl let-row="row">
+      <mat-cell *matCellDef="let column">{{row[column]}}</mat-cell>
+    </ng-template>
+
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+
+</div>
+

@@ -1,0 +1,81 @@
+<div class="container">
+  <mat-card class="mat-card-1">
+    <mat-card-content>
+      <mat-card class="mat-card-2">
+        <mat-card-content>
+          <form [formGroup]="formPay" class="example-form" (ngSubmit)="onSubmit($event)">
+            <div class="title-initial">
+              <h1>Proceso de Pago Congreso de Conferencia de Artículos Científicos</h1>
+            </div>
+            <mat-divider></mat-divider>
+            <br>
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Nombres" value="{{participante?.nombres}}" disabled>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Cédula" value="{{participante?.cedula}}" disabled>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Fecha de Pago" formControlName="fecha_pago" [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="formPay.get('fecha_pago')?.hasError('fechaPagoInvalida')">
+                      Maximo una semana de plazo
+                    </mat-error>
+                    <mat-error *ngIf="formPay.get('fecha_pago')?.hasError('required')">
+                      Fecha de Pago es requerida
+                    </mat-error>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <div class="input-wrapper">
+                      <input matInput placeholder="Monto de Pago" [value]="'$' + participante?.totalAPagar" disabled>
+                    </div>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Dirección de Pago" formControlName="direccion_pago">
+                    <mat-error *ngIf="formPay.get('direccion_pago')?.invalid">Dirección de Pago es requerida</mat-error>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Código Postal de Pago" formControlName="postal_pago">
+                    <mat-error *ngIf="formPay.get('postal_pago')?.hasError('pattern')">
+                      El código postal debe tener exactamente 5 dígitos
+                    </mat-error>
+                    <mat-error *ngIf="formPay.get('postal_pago')?.hasError('required')">
+                      Código Postal requerido
+                    </mat-error>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <span>Subir Comprobante de Pago:</span>
+                  <mat-divider></mat-divider>
+                  <input type="file" accept=".jpg,.png,.jpeg" (change)="onFileSelect($event)" required />
+                </td>
+              </tr>
+            </table>
+            <br>
+            <button mat-raised-button color="primary" type="submit">Confirmar Pago</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,70 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.title-initial {
+  text-align: center;
+  font-size: 30px;
+  color: blueviolet;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+
+.mat-card-1{
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: blueviolet 1px solid;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.mat-card-2{
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+}
+
+.mat-card-1:hover{
+  background-color: blueviolet;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 5px;
+}
+
+.chip-list-container {
+  border: 1px solid #ff9c9c;
+  background: #ece5e5;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.container{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin:auto;
+}
+
+
+/* Estilos específicos para pantallas más pequeñas (ajusta los valores según sea necesario) */
+@media only screen and (max-width: 768px) {
+  .example-form {
+    min-width: 100px;
+    max-width: 100%;
+  }
+
+  .mat-card-1, .mat-card-2 {
+    margin: 5px;
+    padding: 5px;
+  }
+}

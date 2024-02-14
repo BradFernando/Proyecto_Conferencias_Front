@@ -1,0 +1,62 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- Ordinal Column -->
+    <ng-container matColumnDef="ordinal">
+      <mat-header-cell *matHeaderCellDef class="ordinal-cell">No.</mat-header-cell>
+      <mat-cell *matCellDef="let element; let i = index" class="ordinal-cell {{element.estadoVisual !== 'pendiente' ? 'desactivado' : ''}}">{{i + 1}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna de Nombres Completos -->
+    <ng-container matColumnDef="nombresCompletos">
+      <mat-header-cell *matHeaderCellDef class="nombres-cell"> Nombres Completos </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="nombres-cell {{element.estadoVisual !== 'pendiente' ? 'desactivado' : ''}}"> {{element.nombres}} {{element.apellidos}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Area -->
+    <ng-container matColumnDef="area">
+      <mat-header-cell *matHeaderCellDef > Área </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="{{element.estadoVisual !== 'pendiente' ? 'desactivado' : ''}}"> {{element.area}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Tema -->
+    <ng-container matColumnDef="tema">
+      <mat-header-cell *matHeaderCellDef class="tema-cell"> Tema </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="tema-cell {{element.estadoVisual !== 'pendiente' ? 'desactivado' : ''}}"> {{element.tema}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Participacion -->
+    <ng-container matColumnDef="participacion">
+      <mat-header-cell *matHeaderCellDef class="participa-cell"> Participación </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="participa-cell {{element.estadoVisual !== 'pendiente' ? 'desactivado' : ''}}"> {{element.participacion}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fecha_registro">
+      <mat-header-cell *matHeaderCellDef class="fecha-cell"> Fecha de Registro </mat-header-cell>
+      <mat-cell *matCellDef="let element"  class="fecha-cell {{element.estadoVisual !== 'pendiente' ? 'desactivado' : ''}}"> {{element.fecha_registro | date:'yyyy-MM-dd'}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna de Acciones -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef class="acciones-cell"> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="acciones-cell {{element.estadoVisual !== 'pendiente' ? 'desactivado' : ''}}">
+        <button mat-raised-button color="primary" (click)="aceptar(element)" [disabled]="element.estadoVisual !== 'pendiente'">Aceptar</button>
+        <button mat-raised-button color="warn" (click)="rechazar(element)" [disabled]="element.estadoVisual !== 'pendiente'">Rechazar</button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Definir las celdas de encabezado -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <!-- Definir las celdas de fila -->
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'aceptado': row.estadoVisual === 'aceptado', 'rechazado': row.estadoVisual === 'rechazado', 'pendiente': row.estadoVisual === 'pendiente'}" [matTooltip]="row.estadoVisual">
+      <ng-container [ngTemplateOutlet]="tmpl" [ngTemplateOutletContext]="{row: row}"></ng-container>
+    </mat-row>
+
+    <ng-template #tmpl let-row="row">
+      <mat-cell *matCellDef="let column">{{row[column]}}</mat-cell>
+    </ng-template>
+
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>

@@ -1,0 +1,42 @@
+<div class="container">
+    <h1>Administración de Conferencias de Artículos Científicos</h1>
+    <p class="subtitle">Bienvenido al sistema de administración. Aquí puedes gestionar todas las conferencias y artículos científicos.</p>
+
+    <div class="features">
+        <div class="feature">
+            <mat-icon>article</mat-icon>
+            <p>Gestiona los artículos científicos</p>
+        </div>
+        <div class="feature">
+            <mat-icon>groups</mat-icon>
+            <p>Administra las conferencias</p>
+        </div>
+        <div class="feature">
+            <mat-icon>person</mat-icon>
+            <p>Administra los usuarios</p>
+        </div>
+    </div>
+
+    <!-- Diagrama de barras -->
+    <div class="chart">
+        <mat-card>
+            <mat-card-title>Artículos por conferencia</mat-card-title>
+            <mat-card-content>
+                <canvas baseChart
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [legend]="barChartLegend">
+                </canvas>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+  <br>
+    <!-- Progress spinner -->
+    <div class="progress">
+        <mat-progress-spinner mode="determinate" [value]="progress"></mat-progress-spinner>
+        <p>Progreso de la conferencia</p>
+    </div>
+
+</div>

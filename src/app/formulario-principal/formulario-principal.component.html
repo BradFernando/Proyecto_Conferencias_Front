@@ -1,0 +1,161 @@
+<div class="container">
+  <mat-card class="mat-card-1">
+    <mat-card-content>
+      <mat-card class="mat-card-2">
+        <mat-card-content>
+          <form [formGroup]="form" class="example-form" (ngSubmit)="onSubmit()">
+            <div class="title-initial">
+              <h1>Formulario de Inscripción</h1>
+            </div>
+            <mat-divider></mat-divider>
+            <br>
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <!-- Nombres Completos -->
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Nombres Completos</mat-label>
+                    <input matInput formControlName="nombres">
+                    <mat-error *ngIf="form.controls['nombres'].hasError('required')">
+                      Los nombres son <strong>requeridos</strong>
+                    </mat-error>
+                    <mat-error *ngIf="form.controls['nombres'].hasError('pattern')">
+                      Unicamente letras
+                    </mat-error>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <!-- Apellidos Completos -->
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Apellidos Completos</mat-label>
+                    <input matInput formControlName="apellidos">
+                    <mat-error *ngIf="form.controls['apellidos'].hasError('required')">
+                      Los apellidos son <strong>requeridos</strong>
+                    </mat-error>
+                    <mat-error *ngIf="form.controls['apellidos'].hasError('pattern')">
+                      Unicamente letras
+                    </mat-error>
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+
+            <p>
+              <!-- Cédula -->
+                <mat-form-field class="example-full-width">
+                  <mat-label>Cédula</mat-label>
+                  <input matInput type="number" formControlName="cedula">
+                  <mat-icon matSuffix>person</mat-icon>
+                  <mat-error *ngIf="form.controls['cedula'].hasError('required')">
+                    La cédula es <strong>requerida</strong>
+                  </mat-error>
+                  <mat-error *ngIf="form.controls['cedula'].hasError('invalidID')">
+                    La cédula no es válida
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Teléfono de Contacto -->
+                <mat-form-field class="example-full-width">
+                  <mat-label>Teléfono de Contacto</mat-label>
+                  <span matTextPrefix>+593 &nbsp;</span>
+                  <input type="tel" formControlName="telefono" matInput placeholder="555-555-1234">
+                  <mat-icon matSuffix>phone</mat-icon>
+                  <mat-error *ngIf="form.controls['telefono'].hasError('required')">
+                    El teléfono de contacto es <strong>requerido</strong>
+                  </mat-error>
+                  <mat-error *ngIf="form.controls['telefono'].hasError('pattern')">
+                    El teléfono de contacto solo debe contener números
+                  </mat-error>
+                  <mat-error *ngIf="form.controls['telefono'].hasError('maxlength')">
+                    El teléfono de contacto no puede tener más de 10 dígitos
+                  </mat-error>
+                  <mat-error *ngIf="form.controls['telefono'].hasError('minlength')">
+                    El teléfono de contacto no puede tener menos de 10 dígitos
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Email -->
+                <mat-form-field class="example-full-width">
+                  <mat-label>Email</mat-label>
+                  <input type="email" matInput formControlName="email" [errorStateMatcher]="matcher"
+                         placeholder="Ex. pat@example.com">
+                  <mat-icon matSuffix>mail</mat-icon>
+                  <mat-error *ngIf="form.controls['email'].hasError('invalidEmail') && !form.controls['email'].hasError('required')">
+                    Proporcione un email válido
+                  </mat-error>
+                  <mat-error *ngIf="form.controls['email'].hasError('required')">
+                    El email es <strong>requerido</strong>
+                  </mat-error>
+                </mat-form-field>
+
+              <!-- DOI -->
+                <mat-form-field class="example-full-width">
+                  <mat-label>DOI</mat-label>
+                  <input matInput formControlName="doi">
+                  <mat-icon matSuffix>code</mat-icon>
+                  <mat-error *ngIf="form.controls['doi'].hasError('required')">
+                    El DOI es <strong>requerido</strong>
+                  </mat-error>
+                  <mat-error *ngIf="form.controls['doi'].hasError('invalidDOI')">
+                    El DOI no es válido
+                  </mat-error>
+                </mat-form-field>
+
+              <!-- Área -->
+              <mat-form-field class="example-full-width">
+                <mat-label>Área</mat-label>
+                <mat-select formControlName="area">
+                  <mat-option *ngFor="let option of areas" [value]="option.label">{{ option.label }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.controls['area'].hasError('required')">
+                  El área es <strong>requerida</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Fecha -->
+              <mat-form-field class="example-full-width">
+                <mat-label>Escoja una Fecha de Presentación</mat-label>
+                <input matInput placeholder="Fecha" formControlName="fecha" [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="form.controls['fecha'].hasError('fechaInvalida')">
+                  La fecha no puede ser anterior a hoy ni mayor a un mes desde hoy
+                </mat-error>
+                <mat-error *ngIf="form.controls['fecha'].hasError('required')">
+                  La fecha es <strong>requerida</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Tema -->
+              <mat-form-field class="example-full-width">
+                <mat-label>Tema</mat-label>
+                <textarea matInput formControlName="tema" #message maxlength="256" placeholder="Describa brevemente el tema a desarrollar..."></textarea>
+                <mat-hint align="start"><strong>N° Caract. Permitidos</strong> </mat-hint>
+                <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                <mat-error *ngIf="form.controls['tema'].hasError('required')">
+                  El tema es <strong>requerido</strong>
+                </mat-error>
+              </mat-form-field>
+
+            </p>
+
+            <p>
+            <div class="chip-list-container">
+              <mat-label>Participa cómo?</mat-label>
+              <mat-chip-listbox aria-label="Participación" formControlName="participacion">
+                <mat-chip-option *ngFor="let option of participacion" [value]="option">{{option}}</mat-chip-option>
+              </mat-chip-listbox>
+            </div>
+
+            <!-- Botón de envío -->
+            <button mat-raised-button color="primary" type="submit">Enviar</button>
+
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+

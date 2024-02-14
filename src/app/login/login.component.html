@@ -1,0 +1,26 @@
+<div class="login-box">
+  <h2>Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
+    <div class="user-box">
+      <input type="text" formControlName="username" required autocomplete="new-username">
+      <label>Username</label>
+      <!-- Mensaje de error para el campo de nombre de usuario -->
+      <div *ngIf="formSubmitted && loginForm.controls['username'].errors?.['required']" class="error-message">Username is required</div>
+    </div>
+    <div class="user-box">
+      <input type="password" formControlName="password" required autocomplete="new-password">
+      <label>Password</label>
+      <!-- Mensaje de error para el campo de contraseña -->
+      <div *ngIf="formSubmitted && loginForm.controls['password'].errors?.['required']" class="error-message">Password is required</div>
+    </div>
+    <a href="#" (click)="onSubmit($event)">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Ingresar
+    </a>
+  </form>
+  <!-- Mensaje de error que se muestra cuando el inicio de sesión falla -->
+  <div *ngIf="loginFailed && formSubmitted && loginForm.valid" class="error-message">Invalid username or password</div>
+</div>

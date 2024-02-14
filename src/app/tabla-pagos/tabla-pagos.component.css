@@ -1,0 +1,8 @@
+.acciones-cell button {
+  margin-right: 5%;
+}
+
+.desactivado {
+  opacity: 0.5;
+  pointer-events: none;
+}

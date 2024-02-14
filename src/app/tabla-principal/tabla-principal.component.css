@@ -1,0 +1,55 @@
+table {
+  width: 100%;
+}
+
+.ordinal-cell {
+  max-width: 5% ; /* Ajusta este valor según tus necesidades */
+}
+
+.nombres-cell {
+  min-width: 5%; /* Ajusta este valor según tus necesidades */
+}
+
+.tema-cell {
+  min-width: 25%; /* Ajusta este valor según tus necesidades */
+}
+
+.participa-cell {
+  min-width: 1%; /* Ajusta este valor según tus necesidades */
+}
+
+.fecha-cell{
+  min-width: 10%; /* Ajusta este valor según tus necesidades */
+}
+
+.acciones-cell {
+  min-width: 5%; /* Ajusta este valor según tus necesidades */
+}
+
+.acciones-cell button {
+  margin-right: 5%;
+}
+
+.desactivado {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+
+/* Media queries */
+
+@media only screen and (max-width: 600px) {
+  .ordinal-cell,
+  .nombres-cell,
+  .tema-cell,
+  .participa-cell,
+  .fecha-cell,
+  .acciones-cell {
+    min-width: 100%; /* Ajusta este valor según tus necesidades */
+    max-width: 100%; /* Ajusta este valor según tus necesidades */
+  }
+
+  .acciones-cell button {
+    margin-right: 1%; /* Ajusta este valor según tus necesidades */
+  }
+}
