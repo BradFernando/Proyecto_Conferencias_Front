@@ -167,7 +167,7 @@ ngOnInit(): void {
           <div style="text-align: center;">
             <img src="https://res.cloudinary.com/ddafrj6z7/image/upload/v1707726314/Art_Cientificos_pago_completado_-_PA_escqu7.png" alt="Imagen de presentación" style="width: 100%;">
           </div>
-          <p>PA - Congreso de Conferencias de Art. Científicos System</p>
+          <p>PA - Congreso de Conferencias de Artículos Científicos System</p>
           <div style="text-align: center;">
             <img src="https://res.cloudinary.com/ddafrj6z7/image/upload/v1707617078/CienciaGrupoAvanzadaLogo_mtrct4.png" alt="Descripción de la imagen" style="height: 240px; width: 240px">
           </div>
